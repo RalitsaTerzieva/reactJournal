@@ -1,7 +1,6 @@
 import model from '../models';
-import authService from '../services/AuthService'
-
 const { User } = model;
+import authService from '../services/AuthService';
 
 export default {
   async register(req, res) {
