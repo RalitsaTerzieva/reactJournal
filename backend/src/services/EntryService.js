@@ -11,10 +11,10 @@ export default {
         entry.destroy()
     },
     validate(data) {
-        if(!!!data.date) {
-          throw new Error("Please enter a valid date");
+        if (!!!data.date) {
+            throw new Error("Please enter a valid date");
         }
-        if(!!!data.description) {
+        if (!!!data.description) {
             throw new Error("Please enter a valid description");
         }
     }

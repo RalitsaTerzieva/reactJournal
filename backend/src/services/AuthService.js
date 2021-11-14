@@ -5,22 +5,22 @@ import model from '../models';
 const { User } = model;
 
 export default {
-    async register({email, password, first_name, last_name}) {
+    async register({ email, password, first_name, last_name }) {
         const encrypted = await bcrypt.hash(password, 10)
-        await User.create({email, first_name, last_name, password: encrypted})
-        let token = await this.login({email, password});
+        await User.create({ email, first_name, last_name, password: encrypted })
+        let token = await this.login({ email, password });
         return token
     },
     async login({ email, password }) {
-        let user =  await User.findOne({where: {email}});
+        let user = await User.findOne({ where: { email } });
 
-        if(!user) {
+        if (!user) {
             throw new Error('Ivalid email or password!');
         }
 
         let isValid = await this.validatePassword(password, user);
 
-        if(!isValid) {
+        if (!isValid) {
             throw new Error('Ivalid email or password!');
         }
 
@@ -29,7 +29,7 @@ export default {
 
         return token
     },
-    async validatePassword(password, user) { 
+    async validatePassword(password, user) {
         return await bcrypt.compare(password, user.password);
     }
 }
