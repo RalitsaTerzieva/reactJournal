@@ -6,6 +6,7 @@ export default (app) => {
   app.post('/login', AuthController.login);
   app.post('/entries/create', EntryController.createEntry);
   app.get('/entries/:id', EntryController.showEntry);
+  app.delete('/entries/:id', EntryController.deleteEntry);
   app.get('/entries', EntryController.listEntries);
 
 // Create a catch-all route for testing the installation.
