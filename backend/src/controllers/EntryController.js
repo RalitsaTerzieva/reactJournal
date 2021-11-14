@@ -1,6 +1,7 @@
 import model from '../models';
 const { Entry, User } = model;
-import entryService from '../services/EntryService'
+import entryService from '../services/EntryService';
+import { ValidationError } from '../utils/errors';
 
 const entryFindOptions = {
     attributes: {
@@ -20,12 +21,38 @@ export default {
             res.send(entry)
         } catch (e) {
             console.log(e);
-            return res.status(500)
+            if (e instanceof ValidationError) {
+                return res.status(403)
                 .send(
                     { message: e.message });
+            } else {
+                return res.status(500)
+                .send(
+                    { message: 'Could not perform operation at this time, kindly try again later.' });
+            }
         }
     },
-    updateEntry(req, res) {
+    async updateEntry(req, res) {
+        console.log(req.user)
+        const entry = await Entry.findByPk(req.params.id)
+        if (!entry) {
+            return res.status(404).send({ message: 'Not found' });
+        }
+        try {
+            await entryService.update(entry, req.body)
+            res.send({ message: 'Successfully updated' })
+        } catch (e) {
+            console.log(e);
+            if (e instanceof ValidationError) {
+                return res.status(403)
+                .send(
+                    { message: e.message });
+            } else {
+                return res.status(500)
+                .send(
+                    { error: 'Could not perform operation at this time, kindly try again later.' });
+            }
+        }
     },
     async deleteEntry(req, res) {
         const entry = await Entry.findByPk(req.params.id)

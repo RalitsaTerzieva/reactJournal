@@ -24,7 +24,7 @@ export default {
             throw new Error('Ivalid email or password!');
         }
 
-        let payload = { _id: user._id, first_name: user.first_name, last_name: user.last_name, email: user.email }
+        let payload = { _id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email }
         let token = await jwt.sign(payload, JWT_SECRET);
 
         return token
