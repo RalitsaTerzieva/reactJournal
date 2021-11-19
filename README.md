@@ -1,6 +1,6 @@
 # A react application to store data about your life
 
-This is a simple journal that can help you track your daily activities and collect data about your habits and health status.
+This is a simple journal that can help you track your daily activities and collect data about your habits and health status. Actually, there are two separated apps. The Client which serves the FrontEnd (using React), and the API (in Express).
 
 ## Backend
 * Expressjs - web framework
