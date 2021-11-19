@@ -10,3 +10,13 @@ This is a simple journal that can help you track your daily activities and colle
 
 ## Frontend
 * React
+
+## How to run the API
+1. In your terminal, navigate to the api directory.
+2. Run yarn install to install all dependencies.
+3. Run yarn start to start the app.
+
+## How to run the Client
+1. In another terminal, navigate to the client directory.
+2. Run yarn install to install all dependencies.
+3. Run yarn start to start the app.
