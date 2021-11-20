@@ -1,7 +1,10 @@
 import model from '../models';
+
 const { Entry, User } = model;
+
 import entryService from '../services/EntryService';
 import { ValidationError } from '../utils/errors';
+
 
 const entryFindOptions = {
     attributes: {
@@ -17,7 +20,7 @@ const entryFindOptions = {
 export default {
     async createEntry(req, res) {
         try {
-            const entry = await entryService.create(req.body)
+            const entry = await entryService.create({...req.body, user_id: req.user._id})
             res.send(entry)
         } catch (e) {
             console.log(e);
@@ -79,7 +82,7 @@ export default {
         }
     },
     async listEntries(req, res) {
-        const allEntries = await Entry.findAll(entryFindOptions);
+        const allEntries = await Entry.findAll({where: {user_id: req.user._id}, ...entryFindOptions});
         if (!allEntries) {
             return res.status(404).send({ message: 'Not found' });
         } else {
