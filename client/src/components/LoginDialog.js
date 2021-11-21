@@ -1,3 +1,5 @@
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -5,8 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
+
 
 const validationSchema = yup.object({
   email: yup
@@ -33,11 +34,11 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Login</DialogTitle>
       <form onSubmit={formik.handleSubmit}>
-      <DialogContent>
-        <DialogContentText>
-          To login to this website, please enter your email address and password here. We
-          will send updates occasionally.
-        </DialogContentText>
+        <DialogContent>
+          <DialogContentText>
+            To login to this website, please enter your email address and password here. We
+            will send updates occasionally.
+          </DialogContentText>
           <TextField
             fullWidth
             margin="dense"
@@ -61,13 +62,13 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-      </DialogContent>
-      <DialogActions>
-        <Button style={{backgroundColor: "#BAE3D1"}} variant="contained" type="submit">
-          Login
-        </Button>
-        <Button onClick={onClose}>Cancel</Button>
-      </DialogActions>
+        </DialogContent>
+        <DialogActions>
+          <Button style={{ backgroundColor: "#BAE3D1" }} variant="contained" type="submit">
+            Login
+          </Button>
+          <Button onClick={onClose}>Cancel</Button>
+        </DialogActions>
       </form>
     </Dialog>)
 }

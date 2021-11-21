@@ -1,3 +1,5 @@
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -5,8 +7,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
 
 
 const validationSchema = yup.object({
@@ -45,8 +45,8 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
 
   return (
     <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Register</DialogTitle>
-        <form onSubmit={formik.handleSubmit}>
+      <DialogTitle>Register</DialogTitle>
+      <form onSubmit={formik.handleSubmit}>
         <DialogContent>
           <DialogContentText>
             To register to this website, please enter your email address and password here. We
@@ -111,12 +111,12 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button style={{backgroundColor: "#BAE3D1"}} variant="contained" type="submit">
+          <Button style={{ backgroundColor: "#BAE3D1" }} variant="contained" type="submit">
             Register
           </Button>
           <Button onClick={onClose}>Cancel</Button>
         </DialogActions>
-        </form>
-      </Dialog>
-      )
+      </form>
+    </Dialog>
+  )
 }
