@@ -10,6 +10,8 @@ This is a simple journal that can help you track your daily activities and colle
 
 ## Frontend
 * React
+* Formik - form validation
+* React mui - material ui
 
 ## How to run the API
 1. In your terminal, navigate to the api directory.
