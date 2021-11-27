@@ -7,6 +7,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
+
+import { useSelector } from 'react-redux'
 
 
 const validationSchema = yup.object({
@@ -16,11 +19,13 @@ const validationSchema = yup.object({
     .required('Email is required'),
   password: yup
     .string('Enter your password')
-    .min(8, 'Password should be of minimum 8 characters length')
+    .min(6, 'Password should be of minimum 6 characters length')
     .required('Password is required'),
 });
 
 export const LoginDialog = ({ open, onClose, onSubmit }) => {
+  const loginError = useSelector((state) => state.auth.loginError);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,6 +40,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
       <DialogTitle>Login</DialogTitle>
       <form onSubmit={formik.handleSubmit}>
         <DialogContent>
+          {loginError && <Alert severity="error" sx={{ mb: 2 }}>{loginError}</Alert>}
           <DialogContentText>
             To login to this website, please enter your email address and password here. We
             will send updates occasionally.

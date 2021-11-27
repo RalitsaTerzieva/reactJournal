@@ -11,16 +11,22 @@ import Stack from '@mui/material/Stack';
 import { LoginDialog } from './LoginDialog';
 import { RegisterDialog } from './RegisterDialog';
 
+import { useSelector, useDispatch } from 'react-redux'
+import { login, logout, setLoginVisible } from '../redux/authSlice';
+
 const Header = () => {
-  const [openLogin, setOpenLogin] = React.useState(false);
+  const loginVisible = useSelector((state) => state.auth.loginVisible);
+  const user = useSelector((state) => state.auth.user);
+
   const [openRegister, setOpenRegister] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpenLogin = () => {
-    setOpenLogin(true);
+    dispatch(setLoginVisible(true));
   };
 
   const handleCloseLogin = () => {
-    setOpenLogin(false);
+    setLoginVisible(false);
   };
 
   const handleClickOpenRegister= () => {
@@ -43,15 +49,16 @@ const Header = () => {
             Notes
           </Typography>
           <Box sx={{ flexGrow: 1 }}></Box>
-          <Stack direction="row" spacing={2}>
-            <Button color="inherit" onClick={handleClickOpenLogin}>Login</Button>
-            <Button color="inherit" onClick={handleClickOpenRegister}>Register</Button>
-            <Button href="/logout" color="inherit">Log out</Button>
+          <Stack direction="row" spacing={2} alignItems="center">
+            {user && <Typography color="inherit">Welcome, {user.first_name} {user.last_name}</Typography>}
+            {!user && <Button color="inherit" onClick={handleClickOpenLogin}>Login</Button>}
+            {!user && <Button color="inherit" onClick={handleClickOpenRegister}>Register</Button>}
+            {user && <Button color="inherit" onClick={() => dispatch(logout())}>Log out</Button>}
           </Stack>
         </Toolbar>
       </AppBar>
 
-      <LoginDialog open={openLogin} onClose={handleCloseLogin} onSubmit={(values) => alert(JSON.stringify(values, null, 2))}></LoginDialog>
+      <LoginDialog open={loginVisible} onClose={handleCloseLogin} onSubmit={(values, actions) => dispatch(login({values, actions}))}></LoginDialog>
       <RegisterDialog open={openRegister} onClose={handleCloseRegister} onSubmit={(values) => alert(JSON.stringify(values, null, 2))}></RegisterDialog>
       
     </Box>
