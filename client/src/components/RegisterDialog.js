@@ -7,6 +7,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
+
+import { useSelector } from 'react-redux'
 
 
 const validationSchema = yup.object({
@@ -24,7 +27,7 @@ const validationSchema = yup.object({
     .required('Email is required'),
   password: yup
     .string('Enter your password')
-    .min(8, 'Password should be of minimum 8 characters length')
+    .min(6, 'Password should be of minimum 6 characters length')
     .required('Password is required'),
   passwordConfirmation: yup.string()
     .oneOf([yup.ref('password'), null], 'Passwords must match').required('Passwords must match')
@@ -32,6 +35,8 @@ const validationSchema = yup.object({
 
 
 export const RegisterDialog = ({ open, onClose, onSubmit }) => {
+  const registerError = useSelector((state) => state.auth.registerError);
+
   const formik = useFormik({
     initialValues: {
       first_name: '',
@@ -48,6 +53,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
       <DialogTitle>Register</DialogTitle>
       <form onSubmit={formik.handleSubmit}>
         <DialogContent>
+        {registerError && <Alert severity="error" sx={{ mb: 2 }}>{registerError}</Alert>}
           <DialogContentText>
             To register to this website, please enter your email address and password here. We
             will send updates occasionally.

@@ -12,13 +12,14 @@ import { LoginDialog } from './LoginDialog';
 import { RegisterDialog } from './RegisterDialog';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { login, logout, setLoginVisible } from '../redux/authSlice';
+import { login, logout, setLoginVisible, setRegisterVisible, register } from '../redux/authSlice';
 
 const Header = () => {
   const loginVisible = useSelector((state) => state.auth.loginVisible);
   const user = useSelector((state) => state.auth.user);
 
-  const [openRegister, setOpenRegister] = React.useState(false);
+  const registerVisible = useSelector((state) => state.auth.registerVisible);
+  
   const dispatch = useDispatch();
 
   const handleClickOpenLogin = () => {
@@ -30,11 +31,11 @@ const Header = () => {
   };
 
   const handleClickOpenRegister= () => {
-    setOpenRegister(true);
+    dispatch(setRegisterVisible(true));
   };
 
   const handleCloseRegister = () => {
-    setOpenRegister(false);
+    setRegisterVisible(false);
   };
 
   
@@ -59,8 +60,7 @@ const Header = () => {
       </AppBar>
 
       <LoginDialog open={loginVisible} onClose={handleCloseLogin} onSubmit={(values, actions) => dispatch(login({values, actions}))}></LoginDialog>
-      <RegisterDialog open={openRegister} onClose={handleCloseRegister} onSubmit={(values) => alert(JSON.stringify(values, null, 2))}></RegisterDialog>
-      
+      <RegisterDialog open={registerVisible} onClose={handleCloseRegister} onSubmit={(values, actions) => dispatch(register({values, actions}))}></RegisterDialog>
     </Box>
   );
 }

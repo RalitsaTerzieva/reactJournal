@@ -27,6 +27,17 @@ const apiService = {
         } else {
             return {user: parseJwt(data.token), ...data}
         }
+    },
+    async register(userData) {
+        const response = await postData('/register', userData);
+        const data = await response.json();
+        if(!response.ok) {
+            return {
+                error: await data.message
+            }
+        } else {
+            return {user: parseJwt(data.token), ...data}
+        }
     }
 }
 
