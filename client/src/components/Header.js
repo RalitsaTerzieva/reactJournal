@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   const handleCloseLogin = () => {
-    setLoginVisible(false);
+    dispatch(setLoginVisible(false));
   };
 
   const handleClickOpenRegister= () => {
@@ -35,7 +35,7 @@ const Header = () => {
   };
 
   const handleCloseRegister = () => {
-    setRegisterVisible(false);
+    dispatch(setRegisterVisible(false));
   };
 
   
@@ -46,12 +46,13 @@ const Header = () => {
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
-            Notes
-          </Typography>
+          
           <Box sx={{ flexGrow: 1 }}></Box>
           <Stack direction="row" spacing={2} alignItems="center">
             {user && <Typography color="inherit">Welcome, {user.first_name} {user.last_name}</Typography>}
+            <Button color="inherit" href="/about">
+              About
+            </Button>
             {!user && <Button color="inherit" onClick={handleClickOpenLogin}>Login</Button>}
             {!user && <Button color="inherit" onClick={handleClickOpenRegister}>Register</Button>}
             {user && <Button color="inherit" onClick={() => dispatch(logout())}>Log out</Button>}

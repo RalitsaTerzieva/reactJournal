@@ -69,7 +69,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
             helperText={formik.touched.password && formik.errors.password}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{mb: 2}}>
           <Button style={{ backgroundColor: "#BAE3D1" }} variant="contained" type="submit">
             Login
           </Button>

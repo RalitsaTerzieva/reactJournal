@@ -116,7 +116,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
             helperText={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{mb: 2}}>
           <Button style={{ backgroundColor: "#BAE3D1" }} variant="contained" type="submit">
             Register
           </Button>
