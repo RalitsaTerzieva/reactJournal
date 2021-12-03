@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Alert from '@mui/material/Alert';
+import InputAdornment from '@mui/material/InputAdornment';
 
 
 const validationSchema = yup.object({
@@ -119,7 +120,10 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         label="Weight"
                         type="number"
                         value={formik.values.weight}
-                        InputProps={{ inputProps: { min: 10, max: 300, step: '.1' } }}
+                        InputProps={{ 
+                            inputProps: { min: 10, max: 300, step: '.1' },
+                            endAdornment: <InputAdornment position="end">kg</InputAdornment>
+                        }}
                         onChange={e => { formik.setFieldValue("weight", Number(e.target.value)) }}
                         error={formik.touched.weight && Boolean(formik.errors.weight)}
                         margin='dense'
@@ -133,7 +137,10 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                     <TextField
                         label="wc"
                         type="number"
-                        InputProps={{ inputProps: { min: 0, max: 10, step: '1' } }}
+                        InputProps={{
+                            inputProps: { min: 0, max: 10, step: '1' },
+                            endAdornment: <InputAdornment position="end">🚽</InputAdornment>
+                        }}
                         value={formik.values.wc}
                         onChange={e => { formik.setFieldValue("wc", Number(e.target.value)) }}
                         error={formik.touched.wc && Boolean(formik.errors.wc)}
@@ -147,7 +154,7 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                 <Grid item xs={6} lg={3} sx={{ alignItems: 'center', display: 'flex' }}>
                     <FormControlLabel control={
                         <Switch checked={formik.values.workout} value={formik.values.workout} onChange={e => { formik.setFieldValue("workout", e.target.checked) }} />
-                    } label="Workout" />
+                    } label="Workout 🏋️" />
                 </Grid>
                 <Grid item xs={12} lg={6}>
                     <TextField
