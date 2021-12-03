@@ -55,6 +55,7 @@ const Header = () => {
             </Button>
             {!user && <Button color="inherit" onClick={handleClickOpenLogin}>Login</Button>}
             {!user && <Button color="inherit" onClick={handleClickOpenRegister}>Register</Button>}
+            {user && <Button color="inherit" href="/entries/create">Create Entry</Button>}
             {user && <Button color="inherit" onClick={() => dispatch(logout())}>Log out</Button>}
           </Stack>
         </Toolbar>

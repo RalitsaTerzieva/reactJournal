@@ -17,6 +17,12 @@ async function postData(url = '', data = {}, headers = {}, method = 'POST') {
 }
 
 const apiService = {
+    get headers() {
+        const token = localStorage.getItem('token')
+        return {
+            'Authorization': `Bearer ${token}`
+        }
+    },
     async login(userData) {
         const response = await postData('/login', userData);
         const data = await response.json();
@@ -37,6 +43,17 @@ const apiService = {
             }
         } else {
             return {user: parseJwt(data.token), ...data}
+        }
+    },
+    async createEntry(userData) {
+        const response = await postData('/entries', userData, this.headers);
+        const data = await response.json();
+        if(!response.ok) {
+            return {
+                error: await data.message
+            }
+        } else {
+            return data
         }
     }
 }
