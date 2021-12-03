@@ -30,7 +30,7 @@ const CreateEntry = () => {
                         actions.resetForm()
                         navigate("/")
                         dispatch(showMessage({
-                            message: `Successfully crated entry ${response.payload.id}`
+                            message: `Successfully created entry ${response.payload.id}`
                         }))
                     }
                 }} error={error} />
