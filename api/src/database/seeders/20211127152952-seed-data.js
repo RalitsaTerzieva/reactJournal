@@ -49,6 +49,51 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        id: 9995,
+        first_name: 'user',
+        last_name: 'six',
+        email: 'user6@example.com',
+        password: '$2b$10$vmu9gVVT5PEtsVuuLhXkruoyvPxDU.fndgE6zAssJpg.bb.HRfgby',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 9996,
+        first_name: 'user',
+        last_name: 'seven',
+        email: 'user7@example.com',
+        password: '$2b$10$vmu9gVVT5PEtsVuuLhXkruoyvPxDU.fndgE6zAssJpg.bb.HRfgby',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 9997,
+        first_name: 'user',
+        last_name: 'eight',
+        email: 'user8@example.com',
+        password: '$2b$10$vmu9gVVT5PEtsVuuLhXkruoyvPxDU.fndgE6zAssJpg.bb.HRfgby',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 9998,
+        first_name: 'user',
+        last_name: 'nine',
+        email: 'user9@example.com',
+        password: '$2b$10$vmu9gVVT5PEtsVuuLhXkruoyvPxDU.fndgE6zAssJpg.bb.HRfgby',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 9999,
+        first_name: 'user',
+        last_name: 'ten',
+        email: 'user10@example.com',
+        password: '$2b$10$vmu9gVVT5PEtsVuuLhXkruoyvPxDU.fndgE6zAssJpg.bb.HRfgby',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ];
     // Insert users before items because items reference categories
     let users = await queryInterface.bulkInsert(
@@ -63,9 +108,9 @@ module.exports = {
       
       const randInt = (minimum, maximum) => Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
       const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-      const dates = ['2021-11-01', '2021-11-02', '2021-11-03', '2021-11-04', '2021-11-05', '2021-11-06', '2021-11-07', '2021-11-08']
+      const dates = ['2021-11-01', '2021-11-02', '2021-11-03', '2021-11-04', '2021-11-05', '2021-11-06', '2021-11-07', '2021-11-08', '2021-11-09', '2021-11-10', '2021-11-11', '2021-11-12', '2021-11-13', '2021-11-14', '2021-11-15', '2021-11-16', '2021-11-17', '2021-11-18', '2021-11-19', '2021-11-20', '2021-11-21', '2021-11-22', '2021-11-23', '2021-11-24', '2021-11-25', '2021-11-26', '2021-11-27', '2021-11-28', '2021-11-29', '2021-11-30' ]
       const randLorem = () => lorem.slice(randInt(0, 50), randInt(90, 150));
-      for(let i = 0; i < randInt(3, 8); i++) {
+      for(let i = 0; i < randInt(16, 29); i++) {
         entries.push({
           user_id: user.id,
           date: new Date(dates[i]),
