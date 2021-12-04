@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -43,8 +43,8 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar style={{backgroundColor: "#BAE3D1"}} position="static">
         <Toolbar variant="dense">
-          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuIcon />
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} href="/">
+            <HomeIcon />
           </IconButton>
           
           <Box sx={{ flexGrow: 1 }}></Box>

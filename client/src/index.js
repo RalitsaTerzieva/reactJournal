@@ -8,13 +8,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store'
 import { Provider } from 'react-redux'
+import { ConfirmProvider } from "material-ui-confirm";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>,
+      <ConfirmProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>,
+      </ConfirmProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

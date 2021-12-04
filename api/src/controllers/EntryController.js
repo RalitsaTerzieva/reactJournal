@@ -82,7 +82,7 @@ export default {
         }
     },
     async listEntries(req, res) {
-        const allEntries = await Entry.findAll({where: {user_id: req.user._id}, ...entryFindOptions});
+        const allEntries = await Entry.findAll({where: {user_id: req.user._id}, order: [['date', 'DESC']], ...entryFindOptions});
         if (!allEntries) {
             return res.status(404).send({ message: 'Not found' });
         } else {
