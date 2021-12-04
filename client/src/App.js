@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home';
 import About from './components/About';
 import CreateEntry from './components/CreateEntry';
+import EntryDetails from './components/EntryDetails';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/entries/create" element={<CreateEntry />} />
+          <Route path="/entries/details/:id" element={<EntryDetails />} />
       </Routes>
     </div>
   );

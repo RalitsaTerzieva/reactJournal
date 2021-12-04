@@ -10,6 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Alert from '@mui/material/Alert';
 import InputAdornment from '@mui/material/InputAdornment';
+import React, { useEffect } from 'react';
 
 
 const validationSchema = yup.object({
@@ -40,14 +41,19 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
     lunch: '',
     snack: '',
     dinner: ''
-} }) => {
-    //const entryError = useSelector((state) => state.entry.entryError);
+}, values = null, readonly = false }) => {
 
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
         onSubmit: onSubmit,
     });
+
+    useEffect(() => {
+        if(values) {
+            formik.setValues(values)
+        }
+    }, [values]);
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -63,6 +69,7 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                             error={formik.touched.date && Boolean(formik.errors.date)}
                             helperText={formik.touched.date && formik.errors.date}
                             renderInput={(params) => <TextField {...params} fullWidth margin="dense" />}
+                            readOnly={readonly}
                         />
                     </LocalizationProvider>
                 </Grid>
@@ -80,6 +87,9 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         onChange={formik.handleChange}
                         error={formik.touched.topic && Boolean(formik.errors.topic)}
                         helperText={formik.touched.topic && formik.errors.topic}
+                        InputProps={{
+                            readOnly: readonly,
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} lg={12}>
@@ -90,6 +100,9 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         rows={4}
                         InputLabelProps={{
                             shrink: true,
+                        }}
+                        InputProps={{
+                            readOnly: readonly,
                         }}
                         value={formik.values.description}
                         onChange={formik.handleChange}
@@ -107,6 +120,7 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         }}
                         inputProps={{
                             step: 300, // 5 min
+                            readOnly: readonly,
                         }}
                         margin='dense'
                         fullWidth
@@ -120,7 +134,8 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         label="Weight"
                         type="number"
                         value={formik.values.weight}
-                        InputProps={{ 
+                        InputProps={{
+                            readOnly: readonly,
                             inputProps: { min: 10, max: 300, step: '.1' },
                             endAdornment: <InputAdornment position="end">kg</InputAdornment>
                         }}
@@ -138,6 +153,7 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         label="wc"
                         type="number"
                         InputProps={{
+                            readOnly: readonly,
                             inputProps: { min: 0, max: 10, step: '1' },
                             endAdornment: <InputAdornment position="end">🚽</InputAdornment>
                         }}
@@ -153,7 +169,7 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                 </Grid>
                 <Grid item xs={6} lg={3} sx={{ alignItems: 'center', display: 'flex' }}>
                     <FormControlLabel control={
-                        <Switch checked={formik.values.workout} value={formik.values.workout} onChange={e => { formik.setFieldValue("workout", e.target.checked) }} />
+                        <Switch disabled={readonly} checked={formik.values.workout} value={formik.values.workout} onChange={e => { formik.setFieldValue("workout", e.target.checked) }} />
                     } label="Workout 🏋️" />
                 </Grid>
                 <Grid item xs={12} lg={6}>
@@ -164,6 +180,9 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         rows={4}
                         InputLabelProps={{
                             shrink: true,
+                        }}
+                        InputProps={{
+                            readOnly: readonly,
                         }}
                         value={formik.values.breakfast}
                         onChange={formik.handleChange}
@@ -180,6 +199,9 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        InputProps={{
+                            readOnly: readonly,
+                        }}
                         value={formik.values.lunch}
                         onChange={formik.handleChange}
                         error={formik.touched.lunch && Boolean(formik.errors.lunch)}
@@ -194,6 +216,9 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         rows={4}
                         InputLabelProps={{
                             shrink: true,
+                        }}
+                        InputProps={{
+                            readOnly: readonly,
                         }}
                         value={formik.values.snack}
                         onChange={formik.handleChange}
@@ -210,17 +235,20 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        InputProps={{
+                            readOnly: readonly,
+                        }}
                         value={formik.values.dinner}
                         onChange={formik.handleChange}
                         error={formik.touched.dinner && Boolean(formik.errors.dinner)}
                         helperText={formik.touched.dinner && formik.errors.dinner}
                         fullWidth />
                 </Grid>
-                <Grid item xs={12}>
+                {!readonly && <Grid item xs={12}>
                     <Button style={{ backgroundColor: "#BAE3D1" }} variant="contained" type="submit" size="large">
                         Save
                     </Button>
-                </Grid>
+                </Grid>}
             </Grid>
 
         </form>

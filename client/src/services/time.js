@@ -2,7 +2,7 @@ export function convertNumToTime(number) {
     let sign = (number >= 0) ? 1 : -1;
     number = number * sign;
 
-    const hour = Math.floor(number);
+    let hour = Math.floor(number) + '';
     let decpart = number - hour;
 
     const min = 1 / 60;
@@ -13,14 +13,18 @@ export function convertNumToTime(number) {
 
     // Add padding if need
     if (minute.length < 2) {
-    minute = '0' + minute; 
+        minute = '0' + minute; 
+    }
+
+    if (hour.length < 2) {
+        hour = '0' + hour; 
     }
 
     // Add Sign in final result
     sign = sign === 1 ? '' : '-';
 
     const time = sign + hour + ':' + minute;
-
+ 
     return time;
 }
 

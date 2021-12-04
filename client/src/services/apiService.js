@@ -71,6 +71,17 @@ const apiService = {
             return data
         }
     },
+    async getEntry(entryId) {
+        const response = await postData(`/entries/${entryId}`, {}, this.headers, 'GET');
+        const data = await response.json();
+        if(!response.ok) {
+            return {
+                error: await data.message
+            }
+        } else {
+            return data
+        }
+    },
     async deleteEntry(entryId) {
         const response = await postData(`/entries/${entryId}`, undefined, this.headers, 'DELETE');
         const data = await response.json();

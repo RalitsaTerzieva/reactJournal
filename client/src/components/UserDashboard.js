@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
 
 import { LineChart } from './LineChart';
 
@@ -28,6 +29,7 @@ export const UserDashboard = () => {
     const [pageSize, setPageSize] = React.useState(5);
     const confirm = useConfirm();
     const classes = useStyles();
+    const navigate = useNavigate();
 
     const handleDelete = itemId => {
         confirm({ description: `This will permanently delete entry ${itemId}.` })
@@ -125,6 +127,9 @@ export const UserDashboard = () => {
                 <DataGrid className={classes.root} rows={entries} columns={columns} pageSize={pageSize}
                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                     rowsPerPageOptions={[5, 10, 20]}
+                    onRowClick={(params, event) => {
+                        navigate(`/entries/details/${params.row.id}`);
+                    }}
                     pagination autoHeight disableSelectionOnClick />
             </Paper>
         </Grid>
