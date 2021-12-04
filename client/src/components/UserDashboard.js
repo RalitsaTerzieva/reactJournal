@@ -3,7 +3,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import React, { useState, useEffect } from 'react';
 import { useConfirm } from "material-ui-confirm";
-import { apiService } from '../services/apiService'
+import { apiService } from '../services/apiService';
+import { convertNumToTime } from '../services/time';
 import { format } from 'date-fns'
 
 import Stack from '@mui/material/Stack';
@@ -11,6 +12,8 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { makeStyles } from '@mui/styles';
+
+import { LineChart } from './LineChart';
 
 const useStyles = makeStyles((theme) => ({
     root: { // disable border when focusing on datagrid cells
@@ -38,10 +41,17 @@ export const UserDashboard = () => {
     useEffect(() => {
         async function fetchData() {
             const entriesRows = await apiService.getEntries();
-            setEntries(entriesRows);
+            setEntries(entriesRows.map((item) => {
+                return {...item,
+                        wc: item.wc || 0,
+                        sleep: item.sleep || 0,
+                        weight: item.weight || 0,
+                        workout: !!item.workout,
+                    }
+            }));
         }
         fetchData();
-    }, [entries]);
+    }, []);
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 60, align: 'center' },
@@ -53,8 +63,8 @@ export const UserDashboard = () => {
         { field: 'topic', headerName: 'Topic', flex: 0.5 },
         { field: 'description', headerName: 'Description', flex: 1 },
         {
-            field: 'sleep', headerName: 'Sleep', width: 80, align: 'right', valueFormatter: (params) => {
-                return `${params.value || 0} 🕒`;
+            field: 'sleep', headerName: 'Sleep', width: 90, align: 'right', valueFormatter: (params) => {
+                return `${convertNumToTime(params.value || 0)} h 🕒`;
             },
         },
         {
@@ -95,21 +105,23 @@ export const UserDashboard = () => {
     ];
 
     return <Grid container spacing={0}>
-        <Grid item xs={3}>
-            <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>card 1</Paper>
+        <Grid item xs={4}>
+            <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>
+                <LineChart data={entries.slice(0, 10).reverse()} dataKey='wc' />
+            </Paper>
         </Grid>
-        <Grid item xs={3}>
-            <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>card 2</Paper>
+        <Grid item xs={4}>
+            <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>
+                <LineChart data={entries.slice(0, 10).reverse()} dataKey='weight' />
+            </Paper>
         </Grid>
-        <Grid item xs={3}>
-            <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>card 3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-            <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>card 4</Paper>
+        <Grid item xs={4}>
+            <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>
+                <LineChart  data={entries.slice(0, 10).reverse()} dataKey='sleep' tooltipFormatter={(value, name, props) => `${convertNumToTime(value)} h`} />
+            </Paper>
         </Grid>
         <Grid item xs={12}>
             <Paper sx={{ m: 2 }}>
-                
                 <DataGrid className={classes.root} rows={entries} columns={columns} pageSize={pageSize}
                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                     rowsPerPageOptions={[5, 10, 20]}

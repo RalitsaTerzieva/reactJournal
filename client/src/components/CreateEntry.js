@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createEntry } from '../redux/entrySlice';
 import { showMessage } from '../redux/messageSlice';
 import { useNavigate } from 'react-router-dom';
+import { convertTimeToNum } from '../services/time';
 
 const CreateEntry = () => {
     const error = useSelector((state) => state.entry.createError);
@@ -25,6 +26,9 @@ const CreateEntry = () => {
             }}>
                 <Typography variant='h4' sx={{ mb: 3 }}>Create Entry</Typography>
                 <EntryForm onSubmit={async (values, actions) => {
+                    // Convert from time string to float before submit
+                    values.sleep = convertTimeToNum(values.sleep)
+
                     const response = await dispatch(createEntry(values));
                     if (!response.payload.error) {
                         actions.resetForm()
