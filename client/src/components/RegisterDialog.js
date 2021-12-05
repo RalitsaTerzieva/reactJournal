@@ -68,6 +68,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
             onChange={formik.handleChange}
             error={formik.touched.first_name && Boolean(formik.errors.first_name)}
             helperText={formik.touched.first_name && formik.errors.first_name}
+            autoFocus
           />
           <TextField
             fullWidth

@@ -13,14 +13,15 @@ import { RegisterDialog } from './RegisterDialog';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout, setLoginVisible, setRegisterVisible, register } from '../redux/authSlice';
+import { useNavigate } from 'react-router-dom';
+import { showMessage } from '../redux/messageSlice';
 
 const Header = () => {
   const loginVisible = useSelector((state) => state.auth.loginVisible);
   const user = useSelector((state) => state.auth.user);
-
   const registerVisible = useSelector((state) => state.auth.registerVisible);
-  
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClickOpenLogin = () => {
     dispatch(setLoginVisible(true));
@@ -56,7 +57,17 @@ const Header = () => {
             {!user && <Button color="inherit" onClick={handleClickOpenLogin}>Login</Button>}
             {!user && <Button color="inherit" onClick={handleClickOpenRegister}>Register</Button>}
             {user && <Button color="inherit" href="/entries/create">Create Entry</Button>}
-            {user && <Button color="inherit" onClick={() => dispatch(logout())}>Log out</Button>}
+            {user && <Button color="inherit" onClick={
+              async () => {
+                const logoutMessage = `Goodbye, ${user.first_name}`;
+                await dispatch(logout())
+                navigate("/")
+                dispatch(showMessage({
+                  message: logoutMessage,
+                  duration: 3000,
+                }))
+              }
+              }>Log out</Button>}
           </Stack>
         </Toolbar>
       </AppBar>

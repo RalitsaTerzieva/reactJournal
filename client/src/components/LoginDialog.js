@@ -55,6 +55,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
+            autoFocus
           />
           <TextField
             fullWidth
