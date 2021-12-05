@@ -23,7 +23,6 @@ export default {
             const entry = await entryService.create({...req.body, user_id: req.user._id})
             res.send(entry)
         } catch (e) {
-            console.log(e);
             if (e instanceof ValidationError) {
                 return res.status(403)
                 .send(
@@ -43,9 +42,8 @@ export default {
         }
         try {
             await entryService.update(entry, req.body)
-            res.send({ message: 'Successfully updated' })
+            res.send({ message: 'Successfully updated', id: req.params.id })
         } catch (e) {
-            console.log(e);
             if (e instanceof ValidationError) {
                 return res.status(403)
                 .send(
