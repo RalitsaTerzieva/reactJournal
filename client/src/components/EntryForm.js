@@ -10,7 +10,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Alert from '@mui/material/Alert';
 import InputAdornment from '@mui/material/InputAdornment';
-import React, { useEffect } from 'react';
 
 
 const validationSchema = yup.object({
@@ -28,32 +27,28 @@ const validationSchema = yup.object({
 });
 
 
-export const EntryForm = ({ onSubmit, error, initialValues = {
-    date: (new Date()).toString(),
-    description: '',
-    topic: '',
-    sleep: '',
-    wc: '',
-    weight: '',
-    workout: false,
-    symptoms: '',
-    breakfast: '',
-    lunch: '',
-    snack: '',
-    dinner: ''
-}, values = null, readonly = false }) => {
+export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) => {
+    initialValues = initialValues || {
+        date: (new Date()).toString(),
+        description: '',
+        topic: '',
+        sleep: '',
+        wc: '',
+        weight: '',
+        workout: false,
+        symptoms: '',
+        breakfast: '',
+        lunch: '',
+        snack: '',
+        dinner: ''
+    }
 
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
         onSubmit: onSubmit,
+        enableReinitialize: true,
     });
-
-    useEffect(() => {
-        if(values) {
-            formik.setValues(values)
-        }
-    }, [values]);
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -70,6 +65,7 @@ export const EntryForm = ({ onSubmit, error, initialValues = {
                             helperText={formik.touched.date && formik.errors.date}
                             renderInput={(params) => <TextField {...params} fullWidth margin="dense" />}
                             readOnly={readonly}
+                            autoFocus
                         />
                     </LocalizationProvider>
                 </Grid>

@@ -14,13 +14,17 @@ const EntryDetails = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const entryData = await apiService.getEntry(id);
-            entryData.sleep = convertNumToTime(entryData.sleep || 0);
-            console.log(entryData)
+            let entryData = await apiService.getEntry(id);
+            entryData = {...entryData,
+                wc: entryData.wc || 0,
+                sleep: convertNumToTime(entryData.sleep || 0),
+                weight: entryData.weight || 0,
+                workout: !!entryData.workout,
+            }
             setEntry(entryData);
         }
         fetchData();
-    }, []);
+    }, [id]);
 
     return (
         <Main>
@@ -34,7 +38,7 @@ const EntryDetails = () => {
                 backgroundColor: '#FFFAFA',
             }}>
                 <Typography variant='h4' sx={{ mb: 3 }}>Entry {entry && entry.id}</Typography>
-                <EntryForm onSubmit={()=>{}} error={null} values={entry} readonly={true} />
+                <EntryForm onSubmit={()=>{}} error={null} initialValues={entry} readonly={true} />
             </Paper>
         </Main>
     )

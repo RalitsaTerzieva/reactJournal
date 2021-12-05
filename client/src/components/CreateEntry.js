@@ -37,6 +37,19 @@ const CreateEntry = () => {
                             message: `Successfully created entry ${response.payload.id}`
                         }))
                     }
+                }} initialValues={{
+                    date: (new Date()).toString(),
+                    description: '',
+                    topic: '',
+                    sleep: '',
+                    wc: '',
+                    weight: '',
+                    workout: false,
+                    symptoms: '',
+                    breakfast: '',
+                    lunch: '',
+                    snack: '',
+                    dinner: ''
                 }} error={error} />
             </Paper>
         </Main>
