@@ -8,10 +8,18 @@ const createEntry = createAsyncThunk(
     }
   )
 
+  const updateEntry = createAsyncThunk(
+    'entries/update',
+    async ({id, values}, thunkAPI) => {
+      return await apiService.updateEntry(id, values);
+    }
+  )
+
 export const entrySlice = createSlice({
   name: 'entry',
   initialState: {
     createError: null,
+    updateError: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -21,10 +29,18 @@ export const entrySlice = createSlice({
         } else {
           state.createError = null;
         }
-    })
+    });
+
+    builder.addCase(updateEntry.fulfilled, (state, action) => {
+      if (action.payload.error) {
+        state.updateError = action.payload.error;
+      } else {
+        state.updateError = null;
+      }
+    });
   }
 })
 
-export { createEntry };
+export { createEntry, updateEntry };
 
 export default entrySlice.reducer

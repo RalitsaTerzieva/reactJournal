@@ -93,6 +93,17 @@ const apiService = {
             return data
         }
     },
+    async updateEntry(entryId, entryData) {
+        const response = await postData(`/entries/${entryId}`, entryData, this.headers, 'PUT');
+        const data = await response.json();
+        if(!response.ok) {
+            return {
+                error: await data.message
+            }
+        } else {
+            return data
+        }
+    },
 }
 
 export { apiService };

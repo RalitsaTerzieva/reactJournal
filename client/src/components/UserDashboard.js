@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import InfoIcon from '@mui/icons-material/Info';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
 
@@ -91,8 +92,11 @@ export const UserDashboard = () => {
         {
             field: 'actions', headerName: '', flex: 0.2, align: 'center', sortable: false,
             renderCell: (params) => {
-                return <>
+                return <div onClick={(e) => {e.stopPropagation() } }>
                     <Stack direction="row" alignItems="center" spacing={1}>
+                        <IconButton aria-label="detils" size="small" title="details" href={`/entries/details/${params.id}`}>
+                            <InfoIcon fontSize="small" />
+                        </IconButton>
                         <IconButton aria-label="edit" size="small" title="edit" href={`/entries/${params.id}`}>
                             <EditIcon fontSize="small" />
                         </IconButton>
@@ -101,7 +105,7 @@ export const UserDashboard = () => {
                         </IconButton>
                     </Stack>
                     
-                </>;
+                </div>;
             }
         },
     ];
