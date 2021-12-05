@@ -104,6 +104,17 @@ const apiService = {
             return data
         }
     },
+    async getStats() {
+        const response = await postData("/stats", {}, this.headers, 'GET');
+        const data = await response.json();
+        if(!response.ok) {
+            return {
+                error: await data.message
+            }
+        } else {
+            return data
+        }
+    },
 }
 
 export { apiService };

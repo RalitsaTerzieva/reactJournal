@@ -1,5 +1,6 @@
 import AuthController from '../controllers/AuthController';
 import EntryController from '../controllers/EntryController';
+import StatsController from '../controllers/StatsController';
 import jwtAuth from '../middlewares/jwt';
 import isAuthor from '../middlewares/isAuthorMiddleware';
 
@@ -11,6 +12,7 @@ export default (app) => {
     app.get('/entries/:id', jwtAuth, isAuthor, EntryController.showEntry);
     app.delete('/entries/:id', jwtAuth, isAuthor, EntryController.deleteEntry);
     app.get('/entries', jwtAuth, EntryController.listEntries);
+    app.get('/stats', StatsController.stats);
 
     // Create a catch-all route for testing the installation.
     app.all('*', (req, res) => res.status(404).send({

@@ -1,14 +1,28 @@
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import { setRegisterVisible } from '../redux/authSlice';
 import { useDispatch } from 'react-redux'
+import { apiService } from '../services/apiService';
+import React, { useEffect, useState } from 'react';
+
 
 const LandingPage = () => {
+    const [stats, setStats] = useState({userCount: 0, entryCount: 0});
     const dispatch = useDispatch();
+    
+
+    useEffect(() => {
+        async function fetchData() {
+            let statsData = await apiService.getStats();
+            setStats(statsData);
+        }
+        fetchData();
+    }, []);
 
     return (
         <>
@@ -17,7 +31,7 @@ const LandingPage = () => {
                     frameBorder="0" allowFullScreen></iframe>
             </div>
             <Stack direction="column" spacing={8} sx={{justifyContent: 'center', alignItems: 'center', width: '70vw'}}>
-                <Typography variant="h2" sx={{color: '#fff' }}>Join 12 happy users. Start tracking your life today</Typography>
+                <Typography variant="h2" sx={{color: '#fff' }}>Join <Box component="span" sx={{color: "#BAE3D1"}}>{stats.userCount}</Box> happy users who recorded <Box component="span" sx={{color: "#BAE3D1"}}>{stats.entryCount}</Box> days. Start tracking your life today</Typography>
                 <Card sx={{opacity: 0.8, width: "50vw", height: "auto", p: 2, borderRadius: 3}}>
                     <CardContent>
                         <Typography variant="h3">„Health is not about the weight you lose. It's about the life you gain“</Typography>

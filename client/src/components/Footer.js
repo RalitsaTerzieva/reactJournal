@@ -1,12 +1,14 @@
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import BottomNavigation from '@mui/material/BottomNavigation';
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 const Footer = () => {
     return (
-        <BottomNavigation style={{backgroundColor: "#BAE3D1", width: '100%', position: 'fixed', bottom: 0}} showLabels>
-            <BottomNavigationAction label="ReactJournal 2021" icon={<CopyrightIcon/>}/>
-        </BottomNavigation>
+        <Box style={{backgroundColor: "#BAE3D1", width: '100%', height: "48px", position: 'fixed', bottom: 0, display: 'flex', justifyContent: 'center', alignItems: "center"}}>
+            <Stack direction="row" alignItems="center" sx={{color: "#fff"}}>
+                <CopyrightIcon/> ReactJournal {new Date().getFullYear()} 
+            </Stack>
+        </Box>
     );
 };
 
