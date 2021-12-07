@@ -1,6 +1,6 @@
 import { parseJwt } from './jwt'
 
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://react-journal-app.herokuapp.com"
 async function postData(url = '', data = {}, headers = {}, method = 'POST') {
     let request = {
         method: method || 'POST',
