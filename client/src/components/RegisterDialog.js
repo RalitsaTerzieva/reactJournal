@@ -60,6 +60,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
           </DialogContentText>
           <TextField
             fullWidth
+            size="small"
             margin="dense"
             id="first_name"
             name="first_name"
@@ -72,6 +73,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
           />
           <TextField
             fullWidth
+            size="small"
             margin="dense"
             id="last_name"
             name="last_name"
@@ -83,6 +85,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
           />
           <TextField
             fullWidth
+            size="small"
             margin="dense"
             id="email"
             name="email"
@@ -94,6 +97,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
           />
           <TextField
             fullWidth
+            size="small"
             margin="dense"
             id="password"
             name="password"
@@ -106,6 +110,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
           />
           <TextField
             fullWidth
+            size="small"
             margin="dense"
             id="passwordConfirmation"
             name="passwordConfirmation"

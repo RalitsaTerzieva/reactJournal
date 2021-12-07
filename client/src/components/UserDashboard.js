@@ -110,7 +110,7 @@ export const UserDashboard = () => {
         },
     ];
 
-    return <Grid container spacing={0}>
+    return <Grid container spacing={0} sx={{mb: 4}}>
         <Grid item xs={4}>
             <Paper sx={{ m: 2, height: "200px", display: "flex", alignItems: 'center', justifyContent: 'center' }}>
                 <LineChart data={entries.slice(0, 10).reverse()} dataKey='wc' />
@@ -128,7 +128,7 @@ export const UserDashboard = () => {
         </Grid>
         <Grid item xs={12}>
             <Paper sx={{ m: 2 }}>
-                <DataGrid className={classes.root} rows={entries} columns={columns} pageSize={pageSize}
+                <DataGrid density="compact" className={classes.root} rows={entries} columns={columns} pageSize={pageSize}
                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                     rowsPerPageOptions={[5, 10, 20]}
                     onRowClick={(params, event) => {

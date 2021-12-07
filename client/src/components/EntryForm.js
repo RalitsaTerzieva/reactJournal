@@ -63,7 +63,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                             onChange={val => { formik.setFieldValue("date", val.toISOString()) }}
                             error={formik.touched.date && Boolean(formik.errors.date)}
                             helperText={formik.touched.date && formik.errors.date}
-                            renderInput={(params) => <TextField {...params} fullWidth margin="dense" />}
+                            renderInput={(params) => <TextField {...params} fullWidth margin="dense" size="small" />}
                             readOnly={readonly}
                             autoFocus
                         />
@@ -72,6 +72,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 <Grid item xs={12} lg={6}>
                     <TextField
                         fullWidth
+                        size="small"
                         margin="dense"
                         id="topic"
                         name="topic"
@@ -90,6 +91,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={12} lg={12}>
                     <TextField
+                        size="small"
                         id="description"
                         label="Description"
                         multiline
@@ -108,6 +110,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={6} lg={3}>
                     <TextField
+                        size="small"
                         id="sleep"
                         label="Sleep"
                         type="time"
@@ -127,6 +130,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={6} lg={3}>
                     <TextField
+                        size="small"
                         label="Weight"
                         type="number"
                         value={formik.values.weight}
@@ -146,6 +150,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={6} lg={3}>
                     <TextField
+                        size="small"
                         label="wc"
                         type="number"
                         InputProps={{
@@ -165,11 +170,12 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={6} lg={3} sx={{ alignItems: 'center', display: 'flex' }}>
                     <FormControlLabel control={
-                        <Switch disabled={readonly} checked={formik.values.workout} value={formik.values.workout} onChange={e => { formik.setFieldValue("workout", e.target.checked) }} />
+                        <Switch size="small" disabled={readonly} checked={formik.values.workout} value={formik.values.workout} onChange={e => { formik.setFieldValue("workout", e.target.checked) }} />
                     } label="Workout 🏋️" />
                 </Grid>
                 <Grid item xs={12} lg={6}>
                     <TextField
+                        size="small"
                         id="breakfast"
                         label="Breakfast"
                         multiline
@@ -188,6 +194,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={12} lg={6}>
                     <TextField
+                        size="small"
                         id="lunch"
                         label="Lunch"
                         multiline
@@ -206,6 +213,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={12} lg={6}>
                     <TextField
+                        size="small"
                         id="snack"
                         label="Snack"
                         multiline
@@ -224,6 +232,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={12} lg={6}>
                     <TextField
+                        size="small"
                         id="dinner"
                         label="Dinner"
                         multiline

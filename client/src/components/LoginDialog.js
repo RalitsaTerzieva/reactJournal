@@ -47,6 +47,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
           </DialogContentText>
           <TextField
             fullWidth
+            size="small"
             margin="dense"
             id="email"
             name="email"
@@ -59,6 +60,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
           />
           <TextField
             fullWidth
+            size="small"
             margin="dense"
             id="password"
             name="password"

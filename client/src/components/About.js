@@ -28,7 +28,7 @@ const About = () => {
     When you start to write down your day, it becomes more and more clearer what is wrong and right for you and how are you feeling during every day. For many peaople this is a obligation but we don't think that health is just a obligation. Health is the path to everything in life.
             </Box>
             <Box>
-                <iframe title="location" width="500" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=Central%20park,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                <iframe title="location" width="300" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=Central%20park,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
             </Box>
             </Stack>
            </Paper>
