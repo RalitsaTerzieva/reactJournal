@@ -10,7 +10,13 @@ module.exports = {
     "storage": ":memory:",
   },
   "production": {
-    "url": process.env.DATABASE_URL,
+    "url": `${process.env.DATABASE_URL}`,
+    "dialectOptions": {
+      ssl: {
+        require: false,
+        rejectUnauthorized: false,
+      },
+    },
     "dialect": "postgres",
   }
 }
