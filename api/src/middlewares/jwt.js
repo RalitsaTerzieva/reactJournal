@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../../constants'
+import { JWT_SECRET } from '../constants'
 
 export default (req, res, next) => {
     const authHeader = req.headers.authorization;

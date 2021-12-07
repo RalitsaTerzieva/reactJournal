@@ -1,6 +1,6 @@
 import jwt from '../utils/jwt';
 import bcrypt from 'bcrypt'
-import { JWT_SECRET } from '../../constants'
+import { JWT_SECRET } from '../constants'
 import model from '../models';
 const { User } = model;
 
