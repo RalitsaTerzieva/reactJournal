@@ -51,7 +51,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} noValidate>
             <Grid container spacing={2}>
                 {error && <Grid item xs={12}><Alert severity="error" sx={{ mb: 2 }}>{error}</Alert></Grid>}
 
@@ -63,7 +63,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                             onChange={val => { formik.setFieldValue("date", val.toISOString()) }}
                             error={formik.touched.date && Boolean(formik.errors.date)}
                             helperText={formik.touched.date && formik.errors.date}
-                            renderInput={(params) => <TextField {...params} fullWidth margin="dense" size="small" />}
+                            renderInput={(params) => <TextField {...params} fullWidth margin="dense" size="small" required />}
                             readOnly={readonly}
                             autoFocus
                         />
@@ -71,6 +71,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={12} lg={6}>
                     <TextField
+                        required
                         fullWidth
                         size="small"
                         margin="dense"
@@ -91,6 +92,7 @@ export const EntryForm = ({ onSubmit, error, initialValues, readonly = false }) 
                 </Grid>
                 <Grid item xs={12} lg={12}>
                     <TextField
+                        required
                         size="small"
                         id="description"
                         label="Description"

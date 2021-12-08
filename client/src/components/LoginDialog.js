@@ -38,7 +38,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Login</DialogTitle>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} noValidate>
         <DialogContent>
           {loginError && <Alert severity="error" sx={{ mb: 2 }}>{loginError}</Alert>}
           <DialogContentText>
@@ -46,6 +46,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
             will send updates occasionally.
           </DialogContentText>
           <TextField
+            required
             fullWidth
             size="small"
             margin="dense"
@@ -59,6 +60,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
             autoFocus
           />
           <TextField
+            required
             fullWidth
             size="small"
             margin="dense"

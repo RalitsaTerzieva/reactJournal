@@ -51,7 +51,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Register</DialogTitle>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} noValidate>
         <DialogContent>
         {registerError && <Alert severity="error" sx={{ mb: 2 }}>{registerError}</Alert>}
           <DialogContentText>
@@ -59,6 +59,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
             will send updates occasionally.
           </DialogContentText>
           <TextField
+            required
             fullWidth
             size="small"
             margin="dense"
@@ -72,6 +73,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
             autoFocus
           />
           <TextField
+            required
             fullWidth
             size="small"
             margin="dense"
@@ -84,6 +86,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
             helperText={formik.touched.last_name && formik.errors.last_name}
           />
           <TextField
+            required
             fullWidth
             size="small"
             margin="dense"
@@ -96,6 +99,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
             helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
+            required
             fullWidth
             size="small"
             margin="dense"
@@ -109,6 +113,7 @@ export const RegisterDialog = ({ open, onClose, onSubmit }) => {
             helperText={formik.touched.password && formik.errors.password}
           />
           <TextField
+            required
             fullWidth
             size="small"
             margin="dense"
