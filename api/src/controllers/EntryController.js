@@ -28,6 +28,7 @@ export default {
                 .send(
                     { message: e.message });
             } else {
+                console.log(e)
                 return res.status(500)
                 .send(
                     { message: 'Could not perform operation at this time, kindly try again later.' });

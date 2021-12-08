@@ -46,6 +46,18 @@ const EditEntry = () => {
             }}>
                 <Typography variant='h4' sx={{ mb: 3 }}>Entry {entry && entry.id}</Typography>
                 <EntryForm onSubmit={async (values, actions) => {
+                    if(values.sleep === "") {
+                        values.sleep = "00:00"
+                    }
+
+                    if(values.wc === "") {
+                        values.wc = 0
+                    }
+
+                    if(values.weight === "") {
+                        values.weight = 0
+                    }
+
                     // Convert from time string to float before submit
                     values.sleep = convertTimeToNum(values.sleep)
 
